@@ -67,6 +67,7 @@ alias ll.='ls -CFl -d .*'
 alias ll='ls -l'
 alias l='ls -CF'
 alias la='ls -A'
+alias lla='ls -l -A'
 alias grep='grep --color=auto'
 alias dstat='dstat -cdlmnpsy'
 alias rmf='rm -f'
@@ -77,6 +78,7 @@ if [[ "$os" == "Linux" ]]; then
 	alias agug='ag upgrade'
 	alias agdu='ag dist-upgrade'
 elif [[ "$os" == "Darwin" ]]; then
+	export LSCOLORS=Exfxcxdxbxegedabagacad
 	alias chrome='open -a Google\ Chrome'
 	alias safari='open -a Safari'
 	alias bi='brew install'
@@ -97,7 +99,6 @@ alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 # User configuration
 
-export PATH="$PATH:$HOME:/usr/local/heroku/bin:/Users/Yifan/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
@@ -115,6 +116,4 @@ export PATH="$PATH:$HOME:/usr/local/heroku/bin:/Users/Yifan/.rvm/bin"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-export LSCOLORS=Exfxcxdxbxegedabagacad
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/sbin:$PATH
+export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
