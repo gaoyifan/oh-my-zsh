@@ -29,7 +29,7 @@ ZSH_THEME="gao"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how often before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
+# export UPDATE_ZSH_DAYS=14
 
 export HOMEBREW_GITHUB_API_TOKEN=41f444fb132a2b3c4807c4805e15afcd36ee0a13
 
@@ -101,6 +101,10 @@ alias -s bz2='tar -xjvf'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
+# autojump configuration
+if [[ "$os" == "Darwin" ]]; then
+	[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+fi
 # # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
