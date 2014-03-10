@@ -98,9 +98,9 @@ alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 
-alias -g .z=.zshrc
+alias -g .z=~/.zshrc
 alias -g 114=114.214.163.44
-alias -g r114~=root@114.214.163.44:~
+alias -g r114~='root@114.214.163.44:~'
 alias -g r114=root@114.214.163.44
 # User configuration
 
