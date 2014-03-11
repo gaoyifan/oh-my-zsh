@@ -104,7 +104,7 @@ alias -g r114~='root@114.214.163.44:~'
 alias -g r114=root@114.214.163.44
 alias -g aws=54.199.253.70
 alias -g gaws='gao@54.199.253.70'
-alias -h gaws~='gao@54.199.253.70:~'
+alias -g gaws~='gao@54.199.253.70:~'
 
 # User configuration
 
