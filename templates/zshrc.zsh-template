@@ -72,7 +72,12 @@ alias grep='grep --color=auto'
 alias dstat='dstat -cdlmnpsy'
 alias rmf='rm -f'
 if [[ "$os" == "Linux" ]]; then
-	alias ag='apt-get'
+	if [[ "$userID" == "0" ]]; then
+    	#root
+  		alias ag='apt-get'
+  	else
+		alias ag='sudo apt-get'
+	fi
 	alias agi='ag install'
 	alias agu='ag update'
 	alias agug='ag upgrade'
