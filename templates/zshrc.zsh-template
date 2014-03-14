@@ -72,7 +72,7 @@ alias grep='grep --color=auto'
 alias dstat='dstat -cdlmnpsy'
 alias rmf='rm -f'
 if [[ "$os" == "Linux" ]]; then
-	if [[ "$userID" == "0" ]]; then
+	if [[ "$USER" == "root" ]]; then
     	#root
   		alias ag='apt-get'
   	else
