@@ -1,15 +1,16 @@
 function rm () {
-  local path
-  for path in "$@"; do
+  local files
+  local trash=~/.Trash/
+  for files in "$@"; do
     # ignore any arguments
-    if [[ "$path" = -* ]]; then :
+    if [[ "$files" = -* ]]; then :
     else
-      local dst=${path##*/}
+      local dst=${files##*/}
       # append the time if necessary
-      while [ -e ~/.Trash/"$dst" ]; do
-        dst="$dst "$(date +%H-%M-%S)
+      while [ -e $trash$dst ]; do
+        dst=$dst_$(date +%H-%M-%S)
       done
-      /bin/mv "$path" ~/.Trash/"$dst"
+      /bin/mv $files $trash$dst
     fi
   done
 }
