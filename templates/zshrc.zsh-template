@@ -123,7 +123,7 @@ alias -g gvm~='gao@vm.gaoyifan.com:~'
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -148,5 +148,3 @@ if [[ "$os" == "Darwin" ]]; then
 fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
