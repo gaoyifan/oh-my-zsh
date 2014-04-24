@@ -82,3 +82,11 @@ __call_original_brew()
   _call_function ret _brew
   compdef _brew-cask brew
 }
+
+if [[ "$os" == "Darwin" ]]; then
+        alias cask='brew cask'
+        alias ci='cask install'
+        alias cs='cask search'
+        alias cif='cask info'
+        alias cl='cask list'
+fi
