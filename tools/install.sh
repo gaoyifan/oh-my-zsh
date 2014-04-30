@@ -25,8 +25,8 @@ echo "\033[0;34mCopying your current PATH and adding it to the end of ~/.zshrc f
 #sed -i -e "/export PATH=/ c\\
 #export PATH=\"$PATH\"
 #" ~/.zshrc
-echo "export PATH=\$PATH:$PATH\n" > ~/.zshrc
-cat $ZSH/templates/zshrc.zsh-template >> ~/.zshrc
+echo "export PATH=\$PATH:$PATH\n" > ~/.userrc
+cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
 
 echo "\033[0;34mUsing the Oh My Zsh template file and adding it to ~/.zshrc\033[0m"
 sed -i -e "/^ZSH=/ c\\

@@ -107,7 +107,7 @@ alias -g gvm~='gao@vm.gaoyifan.com:~'
 
 # User configuration
 
-export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin"
+export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -130,5 +130,4 @@ export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin"
 if [[ "$os" == "Darwin" ]]; then
 	[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 fi
-
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+source .userrc
