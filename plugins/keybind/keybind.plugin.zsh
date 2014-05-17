@@ -12,5 +12,5 @@
 # ------------------------------------------------------------
 #
 
-bindkey -s "^[e" "^Cexit\n"
+bindkey -s "^[e" "^U^Cexit\n"
 bindkey -s "^[r" "^Ureboot"
