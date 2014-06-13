@@ -45,4 +45,5 @@ echo "\033[0;32m"'                        /____/                       ....is no
 echo "\n\n \033[0;32mPlease look over the ~/.zshrc file to select plugins, themes, and options.\033[0m"
 echo "\n\n \033[0;32mp.s. Follow us at http://twitter.com/ohmyzsh.\033[0m"
 /usr/bin/env zsh
+touch ~/.userrc
 . ~/.zshrc
