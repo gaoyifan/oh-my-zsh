@@ -9,12 +9,12 @@ alias pms='pm search'
 alias pmri='pm reinstall'
 alias pmif='pm info'
 
-if [ `type aptitude >/dev/null 2>&1` ]; then
+if `type aptitude >/dev/null 2>&1` ; then
     pm_shell='aptitude'
     if [[ "$USER" != "root" ]]; then
         pm_shell="sudo $pm_shell"
     fi
-elif [ `type apt-get >/dev/null 2>&1` ]; then
+elif `type apt-get >/dev/null 2>&1` ; then
     pm_shell='apt-get'
     if [[ "$USER" != "root" ]]; then
         pm_shell="sudo $pm_shell"
@@ -23,9 +23,9 @@ elif [ `type apt-get >/dev/null 2>&1` ]; then
     alias pmdu='pm dist-upgrade'
     alias pms='apt-cache search'
     alias pmif='apt-cache show'
-elif  `type brew >/dev/null 2>&1` ; then
+elif `type brew >/dev/null 2>&1` ; then
     pm_shell='brew'
-elif [ `type yum >/dev/null 2>&1` ]; then
+elif `type yum >/dev/null 2>&1` ; then
     pm_shell='yum'
 fi
 
