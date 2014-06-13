@@ -1,6 +1,5 @@
 # local pm_shell
 
-alias pm="$pm_shell"
 alias pmi='pm install'
 alias pmu='pm update'
 alias pmug='pm upgrade'
@@ -29,4 +28,4 @@ elif `type yum >/dev/null 2>&1` ; then
     pm_shell='yum'
 fi
 
-
+alias pm="$pm_shell"
