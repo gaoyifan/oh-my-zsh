@@ -14,6 +14,7 @@ if `type aptitude >/dev/null 2>&1` ; then
     if [[ "$USER" != "root" ]]; then
         pm_shell="sudo $pm_shell"
     fi
+    alias pmif='pm show'
 elif `type apt-get >/dev/null 2>&1` ; then
     pm_shell='apt-get'
     if [[ "$USER" != "root" ]]; then
@@ -23,8 +24,12 @@ elif `type apt-get >/dev/null 2>&1` ; then
     alias pmif='apt-cache show'
 elif `type brew >/dev/null 2>&1` ; then
     pm_shell='brew'
+    alias pml='pm list'
 elif `type yum >/dev/null 2>&1` ; then
     pm_shell='yum'
+    if [[ "$USER" != "root" ]]; then
+        pm_shell="sudo $pm_shell"
+    fi
 fi
 
 alias pm="$pm_shell"
