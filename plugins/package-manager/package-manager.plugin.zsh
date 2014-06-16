@@ -22,9 +22,13 @@ elif `type apt-get >/dev/null 2>&1` ; then
     fi
     alias pms='apt-cache search'
     alias pmif='apt-cache show'
+elif `type opkg >/dev/null 2>&1` ; then
+    pm_shell='opkg'
 elif `type brew >/dev/null 2>&1` ; then
     pm_shell='brew'
     alias pml='pm list'
+    alias pmd='pm desc'
+    alias pmds='pm desc -s'
 elif `type yum >/dev/null 2>&1` ; then
     pm_shell='yum'
     if [[ "$USER" != "root" ]]; then
