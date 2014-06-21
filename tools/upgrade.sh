@@ -1,8 +1,8 @@
 printf '\033[0;34m%s\033[0m\n' "Upgrading Oh My Zsh"
+touch ~/.userrc
 cd "$ZSH"
 if git pull --rebase --stat origin master
 then
-  touch ~/.userrc
   cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
   printf '\033[0;32m%s\033[0m\n' '         __                                     __   '
   printf '\033[0;32m%s\033[0m\n' '  ____  / /_     ____ ___  __  __   ____  _____/ /_  '
