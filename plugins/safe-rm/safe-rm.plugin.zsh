@@ -21,7 +21,7 @@ function _realdir () {
   echo $RESULT
 }
 
-function rm () {
+function rms () {
   local files
   local trash=~/.Trash/
   local filePath
