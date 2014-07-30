@@ -74,12 +74,6 @@ alias lla='ls -l -A'
 alias grep='grep --color=auto'
 alias rmf='rm -f'
 if [[ "$os" == "Linux" ]]; then
-	if [[ "$USER" == "root" ]]; then
-    	#root
-  		alias ag='apt-get'
-  	else
-		alias ag='sudo apt-get'
-	fi
 	alias dstat='dstat -cdlmnpsy'
 elif [[ "$os" == "Darwin" ]]; then
 	export LSCOLORS=Exfxcxdxbxegedabagacad
@@ -103,6 +97,11 @@ alias -g gaws~='gao@aws.gaoyifan.com:~'
 alias -g vm='vm.gaoyifan.com'
 alias -g gvm='gao@vm.gaoyifan.com'
 alias -g gvm~='gao@vm.gaoyifan.com:~'
+alias -g 1415=222.195.92.141
+alias -g r1415~='root@222.195.92.141:~'
+alias -g r1415=root@222.195.92.141
+alias -g y1415~='yifan@222.195.92.141:~'
+alias -g y1415=yifan@222.195.92.141
 
 alias -g .z='~/.zshrc'
 alias -g .v='~/.vimrc'
