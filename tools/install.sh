@@ -21,14 +21,8 @@ if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
   mv ~/.zshrc ~/.zshrc.pre-oh-my-zsh;
 fi
 
-echo "\033[0;34mCopying your current PATH and adding it to the end of ~/.zshrc for you.\033[0m"
-#sed -i -e "/export PATH=/ c\\
-#export PATH=\"$PATH\"
-#" ~/.zshrc
-echo "export PATH=\$PATH:$PATH\n" > ~/.userrc
-cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
-
 echo "\033[0;34mUsing the Oh My Zsh template file and adding it to ~/.zshrc\033[0m"
+cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
 sed -i -e "/^ZSH=/ c\\
 ZSH=$ZSH
 " ~/.zshrc
@@ -44,6 +38,6 @@ echo "\033[0;32m"'\____/_/ /_/  /_/ /_/ /_/\__, /    /___/____/_/ /_/  '"\033[0m
 echo "\033[0;32m"'                        /____/                       ....is now installed!'"\033[0m"
 echo "\n\n \033[0;32mPlease look over the ~/.zshrc file to select plugins, themes, and options.\033[0m"
 echo "\n\n \033[0;32mp.s. Follow us at http://twitter.com/ohmyzsh.\033[0m"
-/usr/bin/env zsh
-touch ~/.userrc
+echo "\n\n \033[0;32mp.p.s. Get stickers and t-shirts at http://shop.planetargon.com.\033[0m"
+env zsh
 . ~/.zshrc
