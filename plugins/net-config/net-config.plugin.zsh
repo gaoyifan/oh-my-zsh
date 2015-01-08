@@ -105,3 +105,4 @@ function addgnet()
 	echo "\n500	gnet" >> /etc/iproute2/rt_tables
 }
 
+alias lslisten="netstat -lnptu"
