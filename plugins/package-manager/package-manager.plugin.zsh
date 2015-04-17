@@ -16,6 +16,7 @@ if `type aptitude >/dev/null 2>&1` ; then
         pm_shell="sudo $pm_shell"
     fi
     alias pmif='pm show'
+    alias pmug='pm full-upgrade'
 elif `type apt-get >/dev/null 2>&1` ; then
     pm_shell='apt-get'
     if [[ "$USER" != "root" ]]; then
