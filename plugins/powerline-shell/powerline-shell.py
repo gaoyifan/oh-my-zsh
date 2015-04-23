@@ -267,6 +267,7 @@ def add_username_segment():
 add_username_segment()
 
 
+import os
 def add_hostname_segment():
     if powerline.args.colorize_hostname:
         from lib.color_compliment import stringToHashToColorAndOpposite
@@ -276,8 +277,10 @@ def add_hostname_segment():
         FG, BG = stringToHashToColorAndOpposite(hostname)
         FG, BG = (rgb2short(*color) for color in [FG, BG])
         host_prompt = ' %s ' % hostname.split('.')[0]
-
-        powerline.append(host_prompt, FG, BG)
+	if os.getenv('SSH_CLIENT'):
+        	powerline.append(host_prompt, Color.SSH_FG, Color.SSH_BG)
+	else:
+        	powerline.append(host_prompt, FG, BG)
     else:
         if powerline.args.shell == 'bash':
             host_prompt = ' \\h '
@@ -286,21 +289,14 @@ def add_hostname_segment():
         else:
             import socket
             host_prompt = ' %s ' % socket.gethostname().split('.')[0]
-
-        powerline.append(host_prompt, Color.HOSTNAME_FG, Color.HOSTNAME_BG)
+	
+	if os.getenv('SSH_CLIENT'):
+        	powerline.append(host_prompt, Color.SSH_FG, Color.SSH_BG)
+	else:
+        	powerline.append(host_prompt, Color.HOSTNAME_FG, Color.HOSTNAME_BG)
 
 
 add_hostname_segment()
-
-
-import os
-
-def add_ssh_segment():
-
-    if os.getenv('SSH_CLIENT'):
-        powerline.append(' %s ' % powerline.network, Color.SSH_FG, Color.SSH_BG)
-
-add_ssh_segment()
 
 
 import os
