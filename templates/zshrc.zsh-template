@@ -82,18 +82,6 @@ alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 
-alias -g 114=114.214.163.44
-alias -g r114~='root@114.214.163.44:~'
-alias -g r114=root@114.214.163.44
-alias -g g114='gao@114.214.163.44'
-alias -g g114~='gao@114.214.163.44:~'
-alias -g aws='aws.gaoyifan.com'
-alias -g gaws='gao@aws.gaoyifan.com'
-alias -g gaws~='gao@aws.gaoyifan.com:~'
-alias -g vm='vm.gaoyifan.com'
-alias -g gvm='gao@vm.gaoyifan.com'
-alias -g gvm~='gao@vm.gaoyifan.com:~'
-
 alias -g .z='~/.zshrc'
 alias -g .v='~/.vimrc'
 alias -g .b='~/.vim/bundles.vim'
@@ -128,8 +116,4 @@ export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# autojump configuration
-if [[ "$os" == "Darwin" ]]; then
-	[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-fi
 source ~/.userrc
