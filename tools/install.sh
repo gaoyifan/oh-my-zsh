@@ -10,7 +10,7 @@ if [ -d "$ZSH" ]; then
 fi
 
 echo "\033[0;34mCloning Oh My Zsh...\033[0m"
-hash git >/dev/null &2>&1 & /usr/bin/env git clone http://git.gaoyifan.com/gao/oh-my-zsh.git ~/.oh-my-zsh || {
+hash git >/dev/null 2>&1 && env git clone --depth=1 http://git.gaoyifan.com/gao/oh-my-zsh.git $ZSH || {
   echo "git not installed"
   exit
 }
@@ -24,8 +24,8 @@ fi
 echo "\033[0;34mUsing the Oh My Zsh template file and adding it to ~/.zshrc\033[0m"
 echo "export PATH=\$PATH:$PATH\n" > ~/.userrc
 cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
-sed -i -e "/^ZSH=/ c\\
-ZSH=$ZSH
+sed -i -e "/^export ZSH=/ c\\
+export ZSH=$ZSH
 " ~/.zshrc
 
 echo "\033[0;34mTime to change your default shell to zsh!\033[0m"

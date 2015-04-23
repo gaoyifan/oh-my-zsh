@@ -13,8 +13,11 @@
 # ------------------------------------------------------------
 #
 
-#Default shutcat keys alt+s
-# insert_sudo () { zle beginning-of-line; zle -U "sudo "; zle end-of-line }
-#zle -N insert-sudo insert_sudo
-#bindkey "^[s" insert-sudo
+sudo-command-line() {
+    [[ -z $BUFFER ]] && zle up-history
+    [[ $BUFFER != sudo\ * ]] && LBUFFER="sudo $LBUFFER"
+}
+zle -N sudo-command-line
+# Defined shortcut keys: [Esc] [Esc]
+bindkey "\e\e" sudo-command-line
 bindkey -s "^[s" "^Asudo ^E"
