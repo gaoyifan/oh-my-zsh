@@ -1,5 +1,6 @@
 function powerline_precmd() {
 	export PS1="$($ZSH/plugins/powerline-shell/powerline-shell.py $? --shell zsh 2> /dev/null)"
+	export RPS1='%(?..%{[0m%}%{[38;5;124m%}%{[38;5;254m%}%{[48;5;124m%} $?%{[48;5;124m%}) %{[38;5;236m%}%{[38;5;15m%}%{[48;5;236m%} %D{%H:%M:%S} %{[0m%}'
 }
 
 function install_powerline_precmd() {
