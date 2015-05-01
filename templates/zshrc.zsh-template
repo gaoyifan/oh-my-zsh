@@ -57,7 +57,7 @@ export HOMEBREW_GITHUB_API_TOKEN=41f444fb132a2b3c4807c4805e15afcd36ee0a13
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rails django sublime osx sudo tmux safe-rm brew-cask keybind package-manager z rvm brew mvn npm net-config history history-substring-search powerline-shell)
+plugins=(git rails django sublime osx sudo tmux safe-rm brew-cask keybind package-manager z rvm brew mvn npm net-config history history-substring-search powerline-shell zsh_reload copyfile copydir)
 os=$(uname -s)
 source $ZSH/oh-my-zsh.sh
 
@@ -115,5 +115,21 @@ export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+function dus()
+{
+	du -sk * | sort -n |       #以 K 字节的方式排序
+	perl -ne '                 #使用Perl来处理 K M 和 G 单位
+	  ($s,$f)=split(m{\t});    #把 尺寸/文件名 分开
+	  for (qw(K M G)) {        #以尺寸单位循环
+	     if($s<1024) {         #如果 尺寸<1024 那么就输出
+	       printf("%.1f",$s);  #显示文件尺寸
+	       print "$_\t$f";     #显示文件名
+	       last                #换行
+	     };
+	     $s=$s/1024            #除1024然后进入下一个尺寸单位
+	  }
+	'
+}
 
 source ~/.userrc
