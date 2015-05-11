@@ -111,7 +111,7 @@ function addtunnel()
 
         local iface_file="/etc/network/interfaces.d/gre-${iface_name}"
 
-        cat << EOF > ${iface_file}
+        cat << EOF | tee ${iface_file}
 auto ${iface_name}
 iface ${iface_name} inet static
     address ${local_gnet_ip}
