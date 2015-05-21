@@ -1,3 +1,4 @@
+source ~/.userrc
 
 #  If not running interactively, do not do anything
 # [[ $- != *i* ]] && return
@@ -118,18 +119,17 @@ export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 function dus()
 {
-	du -sk * | sort -n |       #以 K 字节的方式排序
-	perl -ne '                 #使用Perl来处理 K M 和 G 单位
-	  ($s,$f)=split(m{\t});    #把 尺寸/文件名 分开
-	  for (qw(K M G)) {        #以尺寸单位循环
-	     if($s<1024) {         #如果 尺寸<1024 那么就输出
-	       printf("%.1f",$s);  #显示文件尺寸
-	       print "$_\t$f";     #显示文件名
-	       last                #换行
+	du -sk * | sort -n |
+	perl -ne '
+	  ($s,$f)=split(m{\t});
+	  for (qw(K M G)) {
+	     if($s<1024) {
+	       printf("%.1f",$s);
+	       print "$_\t$f";
+	       last
 	     };
-	     $s=$s/1024            #除1024然后进入下一个尺寸单位
+	     $s=$s/1024
 	  }
 	'
 }
 
-source ~/.userrc
