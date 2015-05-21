@@ -28,6 +28,7 @@ elif `type opkg >/dev/null 2>&1` ; then
     pm_shell='opkg'
 elif `type brew >/dev/null 2>&1` ; then
     pm_shell='brew'
+    alias pmug='pm upgrade --all'
     alias pml='pm list'
     alias pmd='pm desc'
     alias pmds='pm desc -s'
