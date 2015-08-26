@@ -64,10 +64,10 @@ source $ZSH/oh-my-zsh.sh
 
 alias l.='ls -CF -d .*'
 alias ll.='ls -CFl -d .*'
-alias ll='ls -l'
+alias ll='ls -l -h'
 alias l='ls -CF'
 alias la='ls -A'
-alias lla='ls -l -A'
+alias lla='ll -A'
 alias grep='grep --color=auto'
 alias rmf='rm -f'
 if [[ "$os" == "Linux" ]]; then
