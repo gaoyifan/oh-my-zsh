@@ -62,7 +62,7 @@ export HOMEBREW_GITHUB_API_TOKEN=41f444fb132a2b3c4807c4805e15afcd36ee0a13
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git sublime osx sudo tmux safe-rm keybind package-manager z brew net-config history history-substring-search powerline-shell zsh_reload copyfile copydir)
+plugins=(git sublime sudo tmux safe-rm keybind package-manager z brew net-config history history-substring-search powerline-shell zsh_reload copyfile copydir nsenter docker docker-compose)
 os=$(uname -s)
 source $ZSH/oh-my-zsh.sh
 
