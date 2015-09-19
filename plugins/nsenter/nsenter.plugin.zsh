@@ -32,10 +32,10 @@ function docker-enter {
             # Use su to clear all host environment variables except for TERM,
             # initialize the environment variables HOME, SHELL, USER, LOGNAME, PATH,
             # and start a login shell.
-            "$NSENTER" $OPTS su - root
+            eval $NSENTER $OPTS su - root
         else
             # Use env to clear all host environment variables.
-            "$NSENTER" $OPTS env --ignore-environment -- "$@"
+            eval $NSENTER $OPTS env --ignore-environment -- "$@"
         fi
     fi
 }
