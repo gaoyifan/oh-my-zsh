@@ -9,6 +9,10 @@ function docker-enter {
         NSENTER=nsenter
     fi
 
+    if [[ "$USER" != "root" ]]; then
+        NSENTER="sudo $NSENTER"
+    fi
+
     if [ -z "$1" ]; then
         echo "Usage: `basename "$0"` CONTAINER [COMMAND [ARG]...]"
         echo ""
