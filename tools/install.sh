@@ -74,6 +74,7 @@ printf "${BLUE}Using the Oh My Zsh template file and adding it to ~/.zshrc${NORM
 cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
 
 printf "${BLUE}Copying your current PATH and adding it to the end of ~/.zshrc for you.${NORMAL}\n"
+echo "export PATH=$PATH" >>  ~/.userrc
 sed "/export PATH=/ c\\
 export PATH=\"$PATH\"
 " ~/.userrc > ~/.userrc-omztemp
@@ -92,7 +93,6 @@ if [ "$TEST_CURRENT_SHELL" != "zsh" ]; then
     printf "${BLUE}Please manually change your default shell to zsh!${NORMAL}\n"
   fi
 fi
-touch ~/.userrc
 
 printf "${GREEN}"
 echo '         __                                     __   '
