@@ -24,6 +24,19 @@ elif `type apt-get >/dev/null 2>&1` ; then
     fi
     alias pms='apt-cache search'
     alias pmif='apt-cache show'
+elif `type pacman >/dev/null 2>&1` ; then
+    pm_shell='pacman'
+    if [[ "$USER" != "root" ]]; then
+        pm_shell="sudo $pm_shell"
+    fi
+    alias pmi='pm -S'
+    alias pmri='pmi'
+    alias pmu='pm -Sy'
+    alias pmug='pm -Su'
+    alias pmuu='pm -Syu'
+    alias pms='pm -Ss'
+    alias pmif='pm -Qi'
+    alias pmr='pm -Rsc'
 elif `type opkg >/dev/null 2>&1` ; then
     pm_shell='opkg'
 elif `type brew >/dev/null 2>&1` ; then
