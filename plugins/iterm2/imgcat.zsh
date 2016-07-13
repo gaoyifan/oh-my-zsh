@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # tmux requires unrecognized OSC sequences to be wrapped with DCS tmux;
 # <sequence> ST, and for all ESCs in <sequence> to be replaced with ESC ESC. It
 # only accepts ESC backslash for ST.
@@ -26,13 +28,13 @@ function print_image() {
     print_osc
     printf '1337;File='
     if [[ -n "$1" ]]; then
-        printf 'name='`echo -n "$1" | base64`";"
+      printf 'name='`echo -n "$1" | base64`";"
     fi
-    if $(base64 --version 2>&1 | grep GNU > /dev/null)
+    if $(base64 --version 2>&1 | egrep 'fourmilab|GNU' > /dev/null)
     then
-        BASE64ARG=-d
+      BASE64ARG=-d
     else
-        BASE64ARG=-D
+      BASE64ARG=-D
     fi
     echo -n "$3" | base64 $BASE64ARG | wc -c | awk '{printf "size=%d",$1}'
     printf ";inline=$2"
@@ -53,47 +55,45 @@ function show_help() {
 
 ## Main
 
-function imgcat(){
+if [ -t 0 ]; then
+    has_stdin=f
+else
+    has_stdin=t
+fi
 
-    if [ -t 0 ]; then
-        has_stdin=f
-    else
-        has_stdin=t
-    fi
+# Show help if no arguments and no stdin.
+if [ $has_stdin = f -a $# -eq 0 ]; then
+    show_help
+    exit
+fi
 
-    # Show help if no arguments and no stdin.
-    if [ $has_stdin = f -a $# -eq 0 ]; then
+# Look for command line flags.
+while [ $# -gt 0 ]; do
+    case "$1" in
+    -h|--h|--help)
         show_help
         exit
-    fi
+        ;;
+    -*)
+        error "Unknown option flag: $1"
+        show_help
+        exit 1
+      ;;
+    *)
+        if [ -r "$1" ] ; then
+            print_image "$1" 1 "$(base64 < "$1")"
+        else
+            error "imgcat: $1: No such file or directory"
+            exit 2
+        fi
+        ;;
+    esac
+    shift
+done
 
-    # Look for command line flags.
-    while [ $# -gt 0 ]; do
-        case "$1" in
-            -h|--h|--help)
-                show_help
-                exit
-                ;;
-            -*)
-                error "Unknown option flag: $1"
-                show_help
-                exit 1
-                ;;
-            *)
-                if [ -r "$1" ] ; then
-                    print_image "$1" 1 "$(base64 < "$1")"
-                else
-                    error "imgcat: $1: No such file or directory"
-                    exit 2
-                fi
-                ;;
-        esac
-        shift
-    done
+# Read and print stdin
+if [ $has_stdin = t ]; then
+    print_image "" 1 "$(cat | base64)"
+fi
 
-    # Read and print stdin
-    if [ $has_stdin = t ]; then
-        print_image "" 1 "$(cat | base64)"
-    fi
-
-}
+exit 0
