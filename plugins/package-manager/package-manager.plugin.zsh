@@ -51,6 +51,12 @@ elif `type yum >/dev/null 2>&1` ; then
         pm_shell="sudo $pm_shell"
     fi
     alias pmu='pm makecache'
+elif `type dnf >/dev/null 2>&1` ; then
+    pm_shell='dnf'
+    if [[ "$USER" != "root" ]]; then
+        pm_shell="sudo $pm_shell"
+    fi
+    alias pmu='pm makecache'
 fi
 
 alias pm="$pm_shell"
