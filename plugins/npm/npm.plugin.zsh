@@ -17,3 +17,13 @@ alias npmD="npm i -D "
 # Execute command from node_modules folder based on current directory
 # i.e npmE gulp
 alias npmE='PATH="$(npm bin)":"$PATH"'
+
+# Check which npm modules are outdated
+alias npmO="npm outdated"
+
+# Run npm start
+alias npmst="npm start"
+
+# Run npm test
+alias npmt="npm test"
+

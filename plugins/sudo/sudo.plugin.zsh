@@ -2,21 +2,26 @@
 # Description
 # ------------
 #
-# sudo will be inserted before the current command
+# sudo or sudoedit will be inserted before the command
 #
-# ------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Authors
-# ---------
+# -------
 #
-# Yifan Gao <ylgaoyifan@gmail.com>
+# * Dongweiming <ciici123@gmail.com>
 #
-# ------------------------------------------------------------
-#
+# ------------------------------------------------------------------------------
 
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
     if [[ $BUFFER == sudo\ * ]]; then
         LBUFFER="${LBUFFER#sudo }"
+    elif [[ $BUFFER == $EDITOR\ * ]]; then
+        LBUFFER="${LBUFFER#$EDITOR }"
+        LBUFFER="sudoedit $LBUFFER"
+    elif [[ $BUFFER == sudoedit\ * ]]; then
+        LBUFFER="${LBUFFER#sudoedit }"
+        LBUFFER="$EDITOR $LBUFFER"
     else
         LBUFFER="sudo $LBUFFER"
     fi

@@ -41,15 +41,6 @@ main() {
     exit
   fi
 
-printf "${BLUE}Cloning Oh My Zsh...${NORMAL}\n"
-hash git >/dev/null 2>&1 || {
-  echo "Error: git is not installed"
-  exit 1
-}
-env git clone --depth=1 http://git.gaoyifan.com/gao/oh-my-zsh.git $ZSH || {
-  printf "Error: git clone of oh-my-zsh repo failed\n"
-  exit 1
-}
   # Prevent the cloned repository from having insecure permissions. Failing to do
   # so causes compinit() calls to fail with "command not found: compdef" errors
   # for users with insecure umasks (e.g., "002", allowing group writability). Note
@@ -57,7 +48,11 @@ env git clone --depth=1 http://git.gaoyifan.com/gao/oh-my-zsh.git $ZSH || {
   # precedence over umasks except for filesystems mounted with option "noacl".
   umask g-w,o-w
 
-
+  printf "${BLUE}Cloning Oh My Zsh...${NORMAL}\n"
+  hash git >/dev/null 2>&1 || {
+    echo "Error: git is not installed"
+    exit 1
+  }
   # The Windows (MSYS) Git is not compatible with normal use on cygwin
   if [ "$OSTYPE" = cygwin ]; then
     if git --version | grep msysgit > /dev/null; then
@@ -66,6 +61,11 @@ env git clone --depth=1 http://git.gaoyifan.com/gao/oh-my-zsh.git $ZSH || {
       exit 1
     fi
   fi
+  env git clone --depth=1 http://git.gaoyifan.com/gao/oh-my-zsh.git $ZSH || {
+    printf "Error: git clone of oh-my-zsh repo failed\n"
+    exit 1
+  }
+
 
   printf "${BLUE}Looking for an existing zsh config...${NORMAL}\n"
   if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
@@ -73,16 +73,9 @@ env git clone --depth=1 http://git.gaoyifan.com/gao/oh-my-zsh.git $ZSH || {
     mv ~/.zshrc ~/.zshrc.pre-oh-my-zsh;
   fi
 
-printf "${BLUE}Using the Oh My Zsh template file and adding it to ~/.zshrc${NORMAL}\n"
-cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
-
-printf "${BLUE}Copying your current PATH and adding it to the end of ~/.zshrc for you.${NORMAL}\n"
-echo "export PATH=$PATH" >>  ~/.userrc
-sed "/export PATH=/ c\\
-export PATH=\"$PATH\"
-" ~/.userrc > ~/.userrc-omztemp
-mv -f ~/.userrc-omztemp ~/.userrc
-
+  printf "${BLUE}Using the Oh My Zsh template file and adding it to ~/.zshrc${NORMAL}\n"
+  cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
+  touch ~/.userrc
   # If this user's login shell is not already "zsh", attempt to switch.
   TEST_CURRENT_SHELL=$(expr "$SHELL" : '.*/\(.*\)')
   if [ "$TEST_CURRENT_SHELL" != "zsh" ]; then
