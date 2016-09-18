@@ -94,26 +94,26 @@ setup_nat_chains() {
         iptables -t $table -N $user_chain
         iptables -t $table -A $builtin_chain -j $user_chain
     done <<EOF
-filter FORWARD     PortmapFilterForward
-nat    PREROUTING  PortmapNatPrerouting
-nat    POSTROUTING PortmapNatPostrouting
+    filter FORWARD     PortmapFilterForward
+    nat    PREROUTING  PortmapNatPrerouting
+    nat    POSTROUTING PortmapNatPostrouting
 EOF
 }
 
 function addtunnel()
 {
-        local iface_name=$1
-        local local_ip=$2
-        local remote_ip=$3
-        local local_gnet_ip=$4
-        local remote_gnet_ip=$5
-        local remote_gnet_subnet=$6
+    local iface_name=$1
+    local local_ip=$2
+    local remote_ip=$3
+    local local_gnet_ip=$4
+    local remote_gnet_ip=$5
+    local remote_gnet_subnet=$6
 
-        local iface_file="/etc/network/interfaces.d/gre-${iface_name}"
+    local iface_file="/etc/network/interfaces.d/gre-${iface_name}"
 
-        cat << EOF | tee ${iface_file}
-auto ${iface_name}
-iface ${iface_name} inet static
+    cat << EOF | tee ${iface_file}
+    auto ${iface_name}
+    iface ${iface_name} inet static
     address ${local_gnet_ip}
     netmask 255.255.240.0
     pre-up ip tunnel add ${iface_name} mode gre remote ${remote_ip} local ${local_ip} ttl 255
@@ -127,14 +127,20 @@ EOF
 
 function addgnet()
 {
-        sed -i "1iip rule add preference 500 to 100.64.0.0/10 lookup gnet\n" /etc/rc.local
-        echo "\n500     gnet" >> /etc/iproute2/rt_tables
+    sed -i "1iip rule add preference 500 to 100.64.0.0/10 lookup gnet\n" /etc/rc.local
+    echo "\n500     gnet" >> /etc/iproute2/rt_tables
 }
 
 function addroutefromlist() {
-	local iplist=$1
-	local via=$2
-	local dev=$3
-	local table=$4
-	cat $iplist | awk "{ printf(\"route replace %s via $via dev $dev table $table\n\",\$1)}" | ip --batch -
+    local iplist=$1
+    local via=$2
+    local dev=$3
+    local table=$4
+    cat $iplist | awk "{ printf(\"route replace %s via $via dev $dev table $table\n\",\$1)}" | ip --batch -
+}
+
+function nsip() {
+    NS=$1
+    shift
+    ip netns exec $NS ip "$@"
 }
