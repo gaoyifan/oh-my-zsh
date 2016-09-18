@@ -1,17 +1,13 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-source ~/.userrc
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="random"
-#ZSH_THEME="essembeh"
-#ZSH_THEME="risto"
-#ZSH_THEME="obraun"
-ZSH_THEME="gao"
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -54,41 +50,14 @@ ZSH_THEME="gao"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(zsh-syntax-highlighting ${plugins_custom[*]} git sublime sudo tmux safe-rm keybind package-manager z brew net-config history history-substring-search powerline-shell zsh_reload copyfile copydir nsenter docker docker-compose zsh-completions zsh-autosuggestions ip iterm2)
-autoload -U compinit && compinit
-os=$(uname -s)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
 
-alias l.='ls -CF -d .*'
-alias ll.='ls -CFl -d .*'
-alias ll='ls -l -h'
-alias l='ls -CF'
-alias la='ls -A'
-alias lla='ll -A'
-alias grep='grep --color=auto'
-alias rmf='rm -f'
-if [[ "$os" == "Linux" ]]; then
-	alias dstat='dstat -cdlmnpsy'
-elif [[ "$os" == "Darwin" ]]; then
-	export LSCOLORS=Exfxcxdxbxegedabagacad
-	alias chrome='open -a Google\ Chrome'
-	alias safari='open -a Safari'
-	alias nosleep="pmset noidle"
-fi
-alias -s gz='tar -xzvf'
-alias -s tgz='tar -xzvf'
-alias -s zip='unzip'
-alias -s bz2='tar -xjvf'
-
-alias -g .z='~/.zshrc'
-alias -g .v='~/.vimrc'
-alias -g .b='~/.vim/bundles.vim'
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -114,20 +83,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-function dus()
-{
-	du -sk * | sort -n |
-	perl -ne '
-	  ($s,$f)=split(m{\t});
-	  for (qw(K M G)) {
-	     if($s<1024) {
-	       printf("%.1f",$s);
-	       print "$_\t$f";
-	       last
-	     };
-	     $s=$s/1024
-	  }
-	'
-}
-

@@ -19,6 +19,3 @@ if [ $commands[autojump] ]; then # check if autojump is installed
     . `brew --prefix`/etc/autojump.sh
   fi
 fi
-if [[ "$os" == "Darwin" ]]; then
-	[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-fi

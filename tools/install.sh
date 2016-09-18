@@ -74,7 +74,7 @@ main() {
   fi
 
   printf "${BLUE}Using the Oh My Zsh template file and adding it to ~/.zshrc${NORMAL}\n"
-  cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
+  cp $ZSH/templates/zshrc.zsh-yifan ~/.zshrc
   touch ~/.userrc
   # If this user's login shell is not already "zsh", attempt to switch.
   TEST_CURRENT_SHELL=$(expr "$SHELL" : '.*/\(.*\)')

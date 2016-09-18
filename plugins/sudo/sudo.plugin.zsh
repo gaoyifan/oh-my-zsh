@@ -1,6 +1,6 @@
-# ------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Description
-# ------------
+# -----------
 #
 # sudo or sudoedit will be inserted before the command
 #
@@ -28,5 +28,4 @@ sudo-command-line() {
 }
 zle -N sudo-command-line
 # Defined shortcut keys: [Esc] [Esc]
-#bindkey "\e\e" sudo-command-line
-bindkey -s "^[s" "^Asudo ^E"
+bindkey "\e\e" sudo-command-line

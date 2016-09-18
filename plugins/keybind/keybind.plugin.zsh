@@ -14,3 +14,4 @@
 
 bindkey -s "^[e" "^U^Cexit\n"
 bindkey -s "^[r" "^Ureboot"
+bindkey -s "^[s" "^Asudo ^E"

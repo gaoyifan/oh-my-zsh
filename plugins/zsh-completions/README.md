@@ -19,13 +19,13 @@ Usage
 
 * Arch Linux: [community/zsh-completions](https://www.archlinux.org/packages/zsh-completions) / [AUR/zsh-completions-git](https://aur.archlinux.org/packages/zsh-completions-git/)
 * [Gentoo](http://packages.gentoo.org/package/app-shells/zsh-completions)
-* Mac OS: [Homebrew](https://github.com/mxcl/homebrew/blob/master/Library/Formula/zsh-completions.rb)
+* Mac OS: [Homebrew](https://github.com/Homebrew/homebrew-core/blob/master/Formula/zsh-completions.rb)
 * Debian based distributions (Debian/Ubuntu/Linux Mint...): Packager needed, please get in touch !
 * RPM based distributions (Fedora/RHEL/CentOS...): Packager needed, please get in touch !
 
 #### Using frameworks
 
-* If you're using [antigen](https://github.com/zsh-users/antigen), just add `antigen bundle zsh-users/zsh-completions src` to your .zshrc where you're loading your other zsh plugins.
+* If you're using [antigen](https://github.com/zsh-users/antigen), just add `antigen bundle zsh-users/zsh-completions` to your .zshrc where you're loading your other zsh plugins.
 
 
 #### Manual installation
@@ -50,10 +50,10 @@ If you use [oh-my-zsh][] then just clone the repository inside your oh-my-zsh re
 git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
 ```
 
-and enable it in your `.zshrc`:
+and enable it in your `.zshrc` by adding it to your plugin list and reloading the completion:
 
 ```zsh
-plugins+=(zsh-completions)
+plugins=(… zsh-completions)
 autoload -U compinit && compinit
 ```
 
@@ -64,11 +64,13 @@ Contributing
 
 Contributions are welcome, just make sure you follow the guidelines:
 
+ * Completions are not accepted when already available in zsh.
  * Completions are not accepted when already available in their original project.
  * Please do not just copy/paste someone else completion, ask before.
  * Completions only partially implemented are not accepted.
  * Please add a header containing authors, license info, status and origin of the script (example [here](src/_ack)).
  * Please try to follow [Zsh completion style guide](https://github.com/zsh-users/zsh/blob/master/Etc/completion-style-guide).
+ * Please send one separate pull request per file.
  * Send a pull request or ask for committer access.
 
 

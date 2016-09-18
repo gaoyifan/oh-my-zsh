@@ -25,7 +25,7 @@ printf "${BLUE}%s${NORMAL}\n" "Updating Oh My Zsh"
 cd "$ZSH"
 if git pull --rebase --stat origin master
 then
-  cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
+  cp $ZSH/templates/zshrc.zsh-yifan ~/.zshrc
   printf '%s' "$GREEN"
   printf '%s\n' '         __                                     __   '
   printf '%s\n' '  ____  / /_     ____ ___  __  __   ____  _____/ /_  '
