@@ -42,9 +42,9 @@ custom_zsh=${ZSH:+yes}
 
 # Default settings
 ZSH=${ZSH:-~/.oh-my-zsh}
-REPO=${REPO:-ohmyzsh/ohmyzsh}
+REPO=${REPO:-gaoyifan/oh-my-zsh}
 REMOTE=${REMOTE:-https://github.com/${REPO}.git}
-BRANCH=${BRANCH:-master}
+BRANCH=${BRANCH:-base}
 
 # Other options
 CHSH=${CHSH:-yes}
@@ -158,6 +158,8 @@ export ZSH=\"$ZSH\"
 	mv -f ~/.zshrc-omztemp ~/.zshrc
 
 	echo
+    cp $ZSH/templates/zshrc.zsh-yifan ~/.zshrc
+    touch ~/.userrc
 }
 
 setup_shell() {
