@@ -1,5 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin"
 source ~/.userrc
 ZSH_THEME="yifan"
 export UPDATE_ZSH_DAYS=7
