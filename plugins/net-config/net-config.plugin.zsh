@@ -139,8 +139,19 @@ function addroutefromlist() {
     cat $iplist | awk "{ printf(\"route replace %s via $via dev $dev table $table\n\",\$1)}" | ip --batch -
 }
 
+function nsexec() {
+    if [[ -z $NS ]]; then
+        NS=$1
+        shift
+    fi
+    ip netns exec $NS "$@"
+}
+
 function nsip() {
-    NS=$1
-    shift
+    if [[ -z $NS ]]; then
+        NS=$1
+        shift
+    fi
     ip netns exec $NS ip "$@"
 }
+
