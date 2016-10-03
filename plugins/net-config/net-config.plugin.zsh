@@ -141,7 +141,7 @@ function addroutefromlist() {
 
 function nsexec() {
     if [[ -z $NS ]]; then
-        NS=$1
+        local NS=$1
         shift
     fi
     ip netns exec $NS "$@"
@@ -149,7 +149,7 @@ function nsexec() {
 
 function nsip() {
     if [[ -z $NS ]]; then
-        NS=$1
+        local NS=$1
         shift
     fi
     ip netns exec $NS ip "$@"
