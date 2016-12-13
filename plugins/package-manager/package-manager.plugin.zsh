@@ -3,7 +3,7 @@
 alias pmi='pm install'
 alias pmu='pm update'
 alias pmug='pm upgrade'
-alias pmuu='pmu && pmug -y'
+alias pmuu='pmu && pmug'
 alias pmdu='pm dist-upgrade'
 alias pmr='pm remove'
 alias pms='pm search'
