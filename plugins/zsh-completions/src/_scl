@@ -1,4 +1,4 @@
-#compdef chattr
+#compdef scl
 # ------------------------------------------------------------------------------
 # Copyright (c) 2016 Github zsh-users - http://github.com/zsh-users
 # All rights reserved.
@@ -28,50 +28,79 @@
 # Description
 # -----------
 #
-#  Completion script for chattr a tool to change file attributes on a Linux second extended file system. (http://e2fsprogs.sourceforge.net/).
+#  Completion script for Software Collections (https://www.softwarecollections.org).
 #
 # ------------------------------------------------------------------------------
 # Authors
 # -------
 #
-#  * Jindřich Pilař (https://github.com/JindrichPilar)
+#  * Julien Nicoulaud <julien.nicoulaud@gmail.com>
 #
 # ------------------------------------------------------------------------------
 
+_scl() {
+  local context curcontext="$curcontext" state line
+  typeset -A opt_args
 
-_chattr() {
+  local ret=1
 
-_arguments -C \
-   "-R[Recursively change attributes of directories and their contents.]" \
-   "-V[Be verbose with chattr's output and print the program version.]" \
-   "-f[Suppress most error messages.]" \
-   "-v[Set the file's version/generation number.]:version:" \
-   "(-A)+A[Disable atime updates]" \
-   "(+A)-A[Enable atime updates]" \
-   "(-a)+a[Enable append only - file cannot be overridden]" \
-   "(+a)-a[Disable append only - file can be overridden]" \
-   "(-c)+c[Enable automatic compression]" \
-   "(+c)-c[Disable automatic compression]" \
-   "(-D)+D[Enable synchronous directory updates]" \
-   "(+D)-D[Disable synchronous directory updates]" \
-   "(-d)+d[Forbid backing file up with dump program]" \
-   "(+d)-d[Allow backing file up with dump program]" \
-   "(-i)+i[Mark as immutable]" \
-   "(+i)-i[Unmark as immutable]" \
-   "(-j)+j[Enable ext3 journaling]" \
-   "(+j)-j[Disable ext3 journaling]" \
-   "(-s)+s[Enable secure deletion - zero all blocks on delete]" \
-   "(+s)-s[Disable secure deletion - do not zero all blocks on delete]" \
-   "(-S)+S[Enable synchronous updates]" \
-   "(+S)-S[Disable synchronous updates]" \
-   "(-T)+T[Set top of hierarchy - direct subdirectories are allocated independently]" \
-   "(+T)-T[Unset top of hierarchy]" \
-   "(-t)+t[Disable tail merging]" \
-   "(+t)-t[Enable tail merging]" \
-   "(-u)+u[Mark as undeletable - enable undeletion]" \
-   "(+u)-u[Unmark as undeletable - disable undeletion]" \
-   '*:files:_files' \
+  _arguments -C \
+    '1: :_scl_cmds' \
+    "(- : *)"{-h,--help}'[display help information]' \
+    "(- : *)"{-l,--list}'[list installed Software Collections or packages that belong to them]:installed collection:_scl_installed_collections' \
+    '*::arg:->args' \
+  && ret=0
+
+  case $state in
+    (args)
+      curcontext="${curcontext%:*:*}:scl-cmd-$words[1]:"
+      case $line[1] in
+        (register)
+          _arguments '1:Software Collection path:_files -/' && ret=0
+        ;;
+        (deregister)
+          _arguments -C \
+			'1:: :_scl_installed_collections' \
+			'--force[force suppression of the collection]' \
+		 && ret=0
+        ;;
+        (enable)
+          _arguments -C \
+			'1:: :_scl_installed_collections' \
+			'2:command: _command_names -e' \
+		 && ret=0
+        ;;
+        *)
+          _call_function ret _scl_cmd_$words[1] && ret=0
+          (( ret )) && _message 'no more arguments'
+        ;;
+      esac
+    ;;
+  esac
 }
 
-_chattr
+(( $+functions[_scl_cmds] )) ||
+_scl_cmds() {
+  local commands; commands=(
+    'register:register a Software Collection'
+    'deregister:deregister a Software Collection'
+    'enable:enable a Software Collection'
+  )
+  _describe -t commands 'scl command' commands "$@"
+}
 
+(( $+functions[_scl_installed_collections] )) ||
+_scl_installed_collections() {
+  local installed_collections; installed_collections=($(_call_program installed_collections $service --list))
+  _describe -t collections 'Software Collection' installed_collections "$@"
+}
+
+_scl "$@"
+
+# Local Variables:
+# mode: Shell-Script
+# sh-indentation: 2
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# End:
+# vim: ft=zsh sw=2 ts=2 et

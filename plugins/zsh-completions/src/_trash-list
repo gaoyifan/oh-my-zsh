@@ -1,4 +1,4 @@
-#compdef chattr
+#compdef trash-list
 # ------------------------------------------------------------------------------
 # Copyright (c) 2016 Github zsh-users - http://github.com/zsh-users
 # All rights reserved.
@@ -28,7 +28,7 @@
 # Description
 # -----------
 #
-#  Completion script for chattr a tool to change file attributes on a Linux second extended file system. (http://e2fsprogs.sourceforge.net/).
+#  Completion script for trash-list a tool from trash management package trash-cli (http://code.google.com/p/trash-cli).
 #
 # ------------------------------------------------------------------------------
 # Authors
@@ -39,39 +39,21 @@
 # ------------------------------------------------------------------------------
 
 
-_chattr() {
+_trash-list() {
 
-_arguments -C \
-   "-R[Recursively change attributes of directories and their contents.]" \
-   "-V[Be verbose with chattr's output and print the program version.]" \
-   "-f[Suppress most error messages.]" \
-   "-v[Set the file's version/generation number.]:version:" \
-   "(-A)+A[Disable atime updates]" \
-   "(+A)-A[Enable atime updates]" \
-   "(-a)+a[Enable append only - file cannot be overridden]" \
-   "(+a)-a[Disable append only - file can be overridden]" \
-   "(-c)+c[Enable automatic compression]" \
-   "(+c)-c[Disable automatic compression]" \
-   "(-D)+D[Enable synchronous directory updates]" \
-   "(+D)-D[Disable synchronous directory updates]" \
-   "(-d)+d[Forbid backing file up with dump program]" \
-   "(+d)-d[Allow backing file up with dump program]" \
-   "(-i)+i[Mark as immutable]" \
-   "(+i)-i[Unmark as immutable]" \
-   "(-j)+j[Enable ext3 journaling]" \
-   "(+j)-j[Disable ext3 journaling]" \
-   "(-s)+s[Enable secure deletion - zero all blocks on delete]" \
-   "(+s)-s[Disable secure deletion - do not zero all blocks on delete]" \
-   "(-S)+S[Enable synchronous updates]" \
-   "(+S)-S[Disable synchronous updates]" \
-   "(-T)+T[Set top of hierarchy - direct subdirectories are allocated independently]" \
-   "(+T)-T[Unset top of hierarchy]" \
-   "(-t)+t[Disable tail merging]" \
-   "(+t)-t[Enable tail merging]" \
-   "(-u)+u[Mark as undeletable - enable undeletion]" \
-   "(+u)-u[Unmark as undeletable - disable undeletion]" \
-   '*:files:_files' \
+  _arguments -C \
+    '--version[Show programs version number and exit]' \
+    {-h,--help}'[Show help message and exit]' \
+    '*: :' \
+
 }
 
-_chattr
+_trash-list
 
+# Local Variables:
+# mode: Shell-Script
+# sh-indentation: 2
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# End:
+# vim: ft=zsh sw=2 ts=2 et

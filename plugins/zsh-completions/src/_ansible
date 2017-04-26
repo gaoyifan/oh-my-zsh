@@ -62,6 +62,7 @@ __host_file_location () {
   [[ "$OSTYPE" == darwin* ]] && FALLBACK="/usr/local/etc/ansible/hosts"
   [[ "$OSTYPE" == linux* ]] && FALLBACK="/etc/ansible/hosts"
   HOST_FILE=${ANSIBLE_HOSTS:=${FALLBACK}}
+  [[ -f ${HOST_FILE} ]] || HOST_FILE="$PWD/ansible/inventory/hosts"
   [[ -f ${HOST_FILE} ]] || HOST_FILE=/dev/null
 
   echo ${HOST_FILE}
@@ -92,7 +93,7 @@ __host_list ()
   local -a mixed_host_list
   mixed_host_list=$(command \
     cat ${HOST_FILE} \
-    | awk 'NF && $1 !~ /^[:space:]*#|[\[:=]/ { print $1 }' \
+    | awk 'NF && $1 !~ /^[[:space:]]*#|[\[:=]/ { print $1 }' \
     | sort | uniq)
 
   # compute set difference h1 - h2
