@@ -33,6 +33,5 @@ plugins=(
     ip
     iterm2
 )
-autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
