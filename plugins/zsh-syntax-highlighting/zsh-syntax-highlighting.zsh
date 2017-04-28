@@ -27,6 +27,7 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
+[ $ZSH_HIGHLIGHT_VERSION ] && return
 
 if [[ -o function_argzero ]]; then
   # $0 is reliable
