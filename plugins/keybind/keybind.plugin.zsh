@@ -21,7 +21,5 @@ sudo-command-line() {
     fi
 }
 zle -N sudo-command-line
-bindkey -s "^[e" "^U^Cexit\n"
-bindkey -s "^[r" "^Ureboot"
 bindkey "^[s" sudo-command-line
 
