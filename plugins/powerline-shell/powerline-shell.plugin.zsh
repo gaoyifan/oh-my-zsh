@@ -11,6 +11,6 @@ function install_powerline_precmd() {
 	done
 	precmd_functions+=(powerline_precmd)
 }
-if [ "$LC_POWERLINE_FONT" = "1" ]; then
+if [ "$LC_POWERLINE_FONT" = "true" ]; then
 	install_powerline_precmd
 fi
