@@ -3,7 +3,6 @@ export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin"
 source ~/.userrc
 ZSH_THEME="yifan"
 export UPDATE_ZSH_DAYS=7
-ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(
