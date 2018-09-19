@@ -383,7 +383,7 @@ def add_git_segment():
     p = subprocess.Popen(['git', 'symbolic-ref', '-q', 'HEAD'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = p.communicate()
 
-    if 'Not a git repo' in err:
+    if 'ot a git repo' in err:
         return
 
     if out:
