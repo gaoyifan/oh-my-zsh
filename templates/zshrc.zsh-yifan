@@ -29,6 +29,7 @@ plugins=(
     alias
     number-keypad
     iterm2
+    iterm2-integration
     zsh-syntax-highlighting
     zsh-prioritize-cwd-history
 )
