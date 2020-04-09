@@ -6,25 +6,21 @@ export UPDATE_ZSH_DAYS=7
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(
-    zsh-syntax-highlighting
     ${plugins_custom[*]}
+    powerline-shell
     git
-    sublime
     sudo
     tmux
     safe-rm
     keybind
     package-manager
     z
-    brew
     net-config
     history
     history-substring-search
-    powerline-shell
     zsh_reload
     copyfile
     copydir
-    nsenter
     docker
     docker-compose
     zsh-completions
@@ -33,6 +29,8 @@ plugins=(
     alias
     number-keypad
     iterm2
+    zsh-syntax-highlighting
+    zsh-prioritize-cwd-history
 )
 
 source $ZSH/oh-my-zsh.sh
