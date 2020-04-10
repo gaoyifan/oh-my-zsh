@@ -5,6 +5,10 @@ ZSH_THEME="yifan"
 export UPDATE_ZSH_DAYS=7
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_USE_ASYNC=true
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_MANUAL_REBIND=true
 plugins=(
     ${plugins_custom[*]}
     powerline-shell
@@ -37,3 +41,4 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 HISTSIZE=10000000
 SAVEHIST=10000000
+_zsh_autosuggest_bind_widgets
