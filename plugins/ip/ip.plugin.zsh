@@ -1,6 +1,13 @@
 function ipip(){
     curl http://freeapi.ipip.net/$1
 }
+function ipsb(){
+    if `type jq >/dev/null 2>&1`; then
+        curl -sS https://api.ip.sb/geoip/$1 | jq
+    else
+        curl -sS https://api.ip.sb/geoip/$1
+    fi
+}
 function myip(){
     curl http://ifconfig.io
 }
