@@ -12,6 +12,7 @@ ZSH_AUTOSUGGEST_MANUAL_REBIND=true
 plugins=(
     ${plugins_custom[*]}
     powerline-shell
+    vi-mode
     git
     sudo
     tmux
@@ -42,4 +43,5 @@ source $ZSH/oh-my-zsh.sh
 HISTSIZE=120000
 SAVEHIST=100000
 setopt HIST_EXPIRE_DUPS_FIRST
+export KEYTIMEOUT=1 # custom vi-mode converting delay
 _zsh_autosuggest_bind_widgets
