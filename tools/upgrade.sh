@@ -80,5 +80,7 @@ case "$resetAutoStash" in
   *) git config rebase.autoStash "$resetAutoStash" ;;
 esac
 
+cp $ZSH/templates/zshrc.zsh-yifan ~/.zshrc
+
 # Exit with `1` if the update failed
 exit $status
