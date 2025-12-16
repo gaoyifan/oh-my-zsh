@@ -11,7 +11,7 @@ _zsh_autosuggest_async_request() {
 	# If we've got a pending request, cancel it
 	if [[ -n "$_ZSH_AUTOSUGGEST_ASYNC_FD" ]] && { true <&$_ZSH_AUTOSUGGEST_ASYNC_FD } 2>/dev/null; then
 		# Close the file descriptor and remove the handler
-		exec {_ZSH_AUTOSUGGEST_ASYNC_FD}<&-
+		builtin exec {_ZSH_AUTOSUGGEST_ASYNC_FD}<&-
 		zle -F $_ZSH_AUTOSUGGEST_ASYNC_FD
 
 		# We won't know the pid unless the user has zsh/system module installed
@@ -32,7 +32,7 @@ _zsh_autosuggest_async_request() {
 	fi
 
 	# Fork a process to fetch a suggestion and open a pipe to read from it
-	exec {_ZSH_AUTOSUGGEST_ASYNC_FD}< <(
+	builtin exec {_ZSH_AUTOSUGGEST_ASYNC_FD}< <(
 		# Tell parent process our pid
 		echo $sysparams[pid]
 
@@ -44,7 +44,8 @@ _zsh_autosuggest_async_request() {
 
 	# There's a weird bug here where ^C stops working unless we force a fork
 	# See https://github.com/zsh-users/zsh-autosuggestions/issues/364
-	command true
+	autoload -Uz is-at-least
+	is-at-least 5.8 || command true
 
 	# Read the pid from the child process
 	read _ZSH_AUTOSUGGEST_CHILD_PID <&$_ZSH_AUTOSUGGEST_ASYNC_FD
@@ -67,9 +68,10 @@ _zsh_autosuggest_async_response() {
 		zle autosuggest-suggest -- "$suggestion"
 
 		# Close the fd
-		exec {1}<&-
+		builtin exec {1}<&-
 	fi
 
 	# Always remove the handler
 	zle -F "$1"
+	_ZSH_AUTOSUGGEST_ASYNC_FD=
 }
