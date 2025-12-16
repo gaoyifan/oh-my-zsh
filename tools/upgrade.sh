@@ -19,6 +19,7 @@ cd "$ZSH"
 # a subshell (like in `$(...)` or `(...)`, so this hack redefines the
 # function at the top level to always return false when stdout is not
 # a tty.
+touch ~/.userrc
 if [ -t 1 ]; then
   is_tty() {
     true
@@ -183,18 +184,17 @@ local ret=0
 
 # repository settings
 remote=${"$(git config --local oh-my-zsh.remote)":-origin}
-branch=${"$(git config --local oh-my-zsh.branch)":-master}
+branch=${"$(git config --local oh-my-zsh.branch)":-base}
 
 # repository state
 last_head=$(git symbolic-ref --quiet --short HEAD || git rev-parse HEAD)
-# checkout update branch
-git checkout -q "$branch" -- || exit 1
 # branch commit before update (used in changelog)
 last_commit=$(git rev-parse "$branch")
 
 # Update Oh My Zsh
 printf "${BLUE}%s${RESET}\n" "Updating Oh My Zsh"
-if LANG= git pull --quiet --rebase $remote $branch; then
+if git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*" && git fetch -f -p origin && git checkout origin/base
+then
   # Check if it was really updated or not
   if [[ "$(git rev-parse HEAD)" = "$last_commit" ]]; then
     message="Oh My Zsh is already at the latest version."
@@ -203,11 +203,6 @@ if LANG= git pull --quiet --rebase $remote $branch; then
 
     # Save the commit prior to updating
     git config oh-my-zsh.lastVersion "$last_commit"
-
-    # Print changelog to the terminal
-    if [[ "$1" = --interactive ]]; then
-      "$ZSH/tools/changelog.sh" HEAD "$last_commit"
-    fi
 
     printf "${BLUE}%s \`${BOLD}%s${RESET}${BLUE}\`${RESET}\n" "You can see the changelog with" "omz changelog"
   fi
@@ -228,14 +223,13 @@ else
   printf "${RED}%s${RESET}\n" 'There was an error updating. Try again later?'
 fi
 
-# go back to HEAD previous to update
-git checkout -q "$last_head" --
-
 # Unset git-config values set just for the upgrade
 case "$resetAutoStash" in
   "") git config --unset rebase.autoStash ;;
   *) git config rebase.autoStash "$resetAutoStash" ;;
 esac
+
+cp $ZSH/templates/zshrc.zsh-yifan ~/.zshrc
 
 # Exit with `1` if the update failed
 exit $ret

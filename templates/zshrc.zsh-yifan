@@ -1,0 +1,47 @@
+export ZSH=$HOME/.oh-my-zsh
+source ~/.userrc
+ZSH_THEME="yifan"
+export UPDATE_ZSH_DAYS=7
+COMPLETION_WAITING_DOTS="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_USE_ASYNC=true
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_MANUAL_REBIND=true
+plugins=(
+    ${plugins_custom[*]}
+    powerline-shell
+    vi-mode
+    git
+    sudo
+    tmux
+    safe-rm
+    keybind
+    package-manager
+    z
+    net-config
+    history
+    history-substring-search
+    copyfile
+    copypath
+    docker
+    docker-compose
+    zsh-completions
+    zsh-autosuggestions
+    ip
+    alias
+    number-keypad
+    iterm2
+    iterm2-integration
+    zsh-syntax-highlighting
+    zsh-prioritize-cwd-history
+)
+
+source $ZSH/oh-my-zsh.sh
+HISTSIZE=120000
+SAVEHIST=100000
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt INC_APPEND_HISTORY
+export KEYTIMEOUT=1 # custom vi-mode converting delay
+_zsh_autosuggest_bind_widgets
